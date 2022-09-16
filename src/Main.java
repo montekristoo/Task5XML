@@ -16,7 +16,7 @@ import java.nio.file.Paths;
 public class Main {
 
     static BufferedWriter writer = null;
-    static String parentPath = "C://Users//GDB-01//Desktop//Data";
+    final static String parentPath = System.getProperty("user.home") + "//Desktop//Data";
     static String folderName = "//document_";
     static String fileName = "//data.txt";
     static String allDataInOneFile = "//alldata.txt";
