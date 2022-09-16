@@ -27,7 +27,7 @@ public class Main {
     static int limitIterator = 0;
 
     public static void main(String[] args) throws IOException, ParserConfigurationException, SAXException {
-        writer = new BufferedWriter(new FileWriter(parentPath + allDataInOneFile));
+        writer = new BufferedWriter(new FileWriter(parentPath + fileName));
         String mainPage = "https://makeup.md/sitemap/sitemap.xml";
         String mainTag = "sitemap";
         parseDocument(mainPage, mainTag, writer);
