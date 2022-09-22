@@ -17,6 +17,13 @@ public class DataWriter {
 
     public static int counter = 0;
 
+    /**
+     *
+     * @param documentInfo Informations about current node, to know which link and when write to file because it's recursive approach.
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     protected static void writeWithManager(DocumentInfo documentInfo) throws IOException, ParserConfigurationException, SAXException {
         String address = documentInfo.getAddress();
         String tag = documentInfo.getTag();
@@ -44,6 +51,14 @@ public class DataWriter {
         }
     }
 
+    /**
+     *
+     * @param address Extracted address from node, return parsed document to access his meta-data.
+     * @return
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     private static Document getParsedXMLDocument(String address) throws IOException, ParserConfigurationException, SAXException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
