@@ -13,6 +13,13 @@ import java.net.URL;
 
 public class DataWriter {
 
+    /**
+     *
+     * @param documentInfo Informations about current node, to know which link and when write to file because it's recursive approach.
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     protected static void writeAllDataInSameFile(DocumentInfo documentInfo) throws IOException, ParserConfigurationException, SAXException {
         String address = documentInfo.getAddress();
         String tag = documentInfo.getTag();
@@ -36,6 +43,14 @@ public class DataWriter {
         }
     }
 
+    /**
+     *
+     * @param address Extracted address from node, return parsed document to access his meta-data.
+     * @return Document
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     * @throws IOException
+     */
     private static Document getParsedXMLDocument(String address) throws ParserConfigurationException, SAXException, IOException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
