@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Main {
+    static String w = null;
 
     static BufferedWriter writer = null;
     final static String parentPath = System.getProperty("user.home") + "//Desktop//Data";
