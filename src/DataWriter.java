@@ -13,6 +13,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+@SuppressWarnings("ConstantConditions")
 public class DataWriter {
 
     public static int counter = 0;
@@ -30,19 +31,16 @@ public class DataWriter {
             Node node = nodeList.item(iterator);
             Element eElement = (Element) node;
             String nodeAddress = eElement.getChildNodes().item(1).getTextContent();
+            System.out.println(counter);
             if (tag.equals(PathsInfo.BREAKPOINT.toString()) && aux == 0) {
-                writer.flush();
-                writer.write(nodeAddress + '\n');
-                Files.write(manager, String.valueOf(counter).getBytes());
+                writeToManagerAndFile(writer, nodeAddress);
                 counter++;
             }
             else if (tag.equals(PathsInfo.BREAKPOINT.toString()) && counter < aux) {
                 counter++;
             }
             else if (tag.equals(PathsInfo.BREAKPOINT.toString()) && counter >= aux) {
-                writer.flush();
-                writer.write(nodeAddress + '\n');
-                Files.write(manager, String.valueOf(counter).getBytes());
+                writeToManagerAndFile(writer, nodeAddress);
                 counter++;
             }
             else {
@@ -50,6 +48,12 @@ public class DataWriter {
                 writeWithManager(infoToSend);
             }
         }
+    }
+
+    private static void writeToManagerAndFile(BufferedWriter fileWriter, String url) throws IOException {
+       fileWriter.flush();
+       fileWriter.write(url + "\n");
+       Files.write(manager, String.valueOf(counter).getBytes());
     }
 
     private static Document getParsedXMLDocument(String address) throws IOException, ParserConfigurationException, SAXException {
