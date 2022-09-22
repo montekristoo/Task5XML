@@ -81,7 +81,7 @@ public class DataWriter {
 
     /**
      *
-     * @param address - Extracted address from node
+     * @param address - Extracted address from node, return parsed node to access his meta-data.
      * @return Document
      * @throws IOException
      * @throws ParserConfigurationException
