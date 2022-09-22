@@ -1,1 +1,1 @@
-Programul dat parcurge recursiv toate nodurile fișierelor XML și înscrie informațiile din tag-ul "url" al fiecărui nod.
+Programul dat împarte link-urile identificate în nodul copil al fiecărui nod părinte pe foldere din fișierul XML.
