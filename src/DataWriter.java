@@ -34,8 +34,8 @@ public class DataWriter {
             }
             else {
                 counter++;
-                Path path = Path.of(PathsInfo.ROOT_PATH + PathsInfo.FOLDERS_PATH.toString() + counter);
-                Files.createDirectory(path);
+                Path path = Path.of(PathsInfo.ROOT_PATH + PathsInfo.FOLDERS_PATH.toString() + "//" + counter);
+                Files.createDirectories(path);
                 writer = new BufferedWriter(new FileWriter(path.toString() + "//" + PathsInfo.FILE_DATA));
                 DocumentInfo infoToSend = new DocumentInfo(nodeAddress, PathsInfo.BREAKPOINT.toString(), writer);
                 writeWithManager(infoToSend);
