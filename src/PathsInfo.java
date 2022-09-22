@@ -3,7 +3,7 @@ public enum PathsInfo {
     ROOT_PAGE("https://makeup.md/sitemap/sitemap.xml"),
     ROOT_TAG("sitemap"),
     BREAKPOINT("url"),
-    ALL_DATA_FOLDER("//AllData"),
+    FOLDER_NAME("//AllDataInFile"),
     FILE_DATA("//data.txt");
 
     private String value;
