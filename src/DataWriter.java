@@ -14,9 +14,18 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("ConstantConditions")
 public class DataWriter {
     private static int fileCounter = 1;
     public static final List<String> linksBuffer = new ArrayList<>();
+
+    /**
+     *
+     * @param documentInfo Informations about current node, to know which link and when write to file because it's recursive approach.
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     protected static void writeLimitedData(DocumentInfo documentInfo) throws IOException, ParserConfigurationException, SAXException {
 
         String address = documentInfo.getAddress();
@@ -36,7 +45,6 @@ public class DataWriter {
                     fileCounter++;
                 }
             }
-
             else {
                 DocumentInfo infoToSend = new DocumentInfo(nodeAddress, PathsInfo.BREAKPOINT.toString(), limit);
                 writeLimitedData(infoToSend);
@@ -47,6 +55,10 @@ public class DataWriter {
         }
     }
 
+    /**
+     * @implNote write data to current folder (1, 2..18)
+     * @throws IOException
+     */
     private static void writeToFile() throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(PathsInfo.ROOT_PATH + "//" + fileCounter + ".txt"));
         linksBuffer.forEach(url -> {
@@ -61,6 +73,14 @@ public class DataWriter {
         linksBuffer.clear();
     }
 
+    /**
+     *
+     * @param address Extracted address from node, return parsed document to access his meta-data.
+     * @return Document
+     * @throws IOException
+     * @throws ParserConfigurationException
+     * @throws SAXException
+     */
     private static Document getParsedXMLDocument(String address) throws IOException, ParserConfigurationException, SAXException {
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder = documentBuilderFactory.newDocumentBuilder();
